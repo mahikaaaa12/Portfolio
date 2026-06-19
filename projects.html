@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>All Projects | Mahika Mangaonkar</title>
+  <style>
+    /* =========================================
+       VARIABLES & RESET
+    ========================================= */
+    :root {
+      --bg-primary: #0D0D0D;
+      --bg-secondary: #151515;
+      --card-bg: #1A1A1A;
+      --purple-primary: #8B5CF6;
+      --purple-light: #A78BFA;
+      --purple-dim: rgba(139, 92, 246, 0.15);
+      --purple-glow: rgba(139, 92, 246, 0.4);
+      --text-primary: #F5F5F5;
+      --text-secondary: #B3B3B3;
+      --border-color: rgba(139, 92, 246, 0.2);
+      --gradient-purple: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+      --gradient-text: linear-gradient(90deg, #8B5CF6, #C4B5FD);
+      --radius-card: 16px;
+      --radius-pill: 100px;
+      --transition: 0.3s ease;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', 'Sora', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--purple-primary); border-radius: 3px; }
+
+    /* =========================================
+       UTILITIES
+    ========================================= */
+    .gradient-text {
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* =========================================
+       NAVIGATION
+    ========================================= */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .nav-logo img { height: 100px; }
+    .nav-links { display: flex; gap: 36px; }
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 15px;
+      font-weight: 500;
+      position: relative;
+      transition: color var(--transition);
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--gradient-purple);
+      border-radius: 2px;
+      transition: width var(--transition);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--text-primary); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-color);
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .btn-back:hover {
+      background: var(--purple-dim);
+      border-color: var(--purple-primary);
+      box-shadow: 0 0 16px var(--purple-glow);
+    }
+    .nav-toggle {
+      display: none;
+      background: none; border: none;
+      color: var(--text-primary);
+      font-size: 20px; cursor: pointer;
+    }
+
+    /* =========================================
+       HERO / PAGE HEADER
+    ========================================= */
+    .page-header {
+      min-height: 38vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 60px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .page-header .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 14px;
+    }
+    .page-header h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+    .page-header p {
+      color: var(--text-secondary);
+      font-size: 17px;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* =========================================
+       SEARCH + FILTER BAR
+    ========================================= */
+    .controls {
+      max-width: 1200px;
+      margin: 0 auto 48px;
+      padding: 0 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 220px;
+      max-width: 340px;
+    }
+    .search-wrap i {
+      position: absolute;
+      left: 16px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 14px;
+      pointer-events: none;
+    }
+    #searchInput {
+      width: 100%;
+      padding: 12px 16px 12px 40px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    #searchInput::placeholder { color: rgba(255,255,255,0.2); }
+    #searchInput:focus {
+      border-color: var(--purple-primary);
+      box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-color);
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: inherit;
+    }
+    .filter-tab:hover {
+      color: var(--text-primary);
+      border-color: var(--purple-primary);
+      background: var(--purple-dim);
+    }
+    .filter-tab.active {
+      background: var(--gradient-purple);
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 4px 16px rgba(139,92,246,0.35);
+    }
+
+    .results-count {
+      font-size: 13px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .results-count span { color: var(--purple-light); font-weight: 600; }
+
+    /* =========================================
+       PROJECTS GRID
+    ========================================= */
+    .projects-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 60px 100px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* Featured (wide) card */
+    .project-card.featured {
+      grid-column: span 2;
+    }
+    .project-card.featured .project-img {
+      height: 260px;
+    }
+
+    .project-card {
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      overflow: hidden;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--purple-primary);
+      box-shadow: 0 12px 40px rgba(139,92,246,0.22);
+    }
+    .project-card.hidden {
+      display: none;
+    }
+
+    .project-img {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-img .img-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      opacity: 0.18;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .project-card:hover .img-placeholder {
+      transform: scale(1.08);
+      opacity: 0.28;
+    }
+
+    /* Unique card gradients */
+    .proj-grad-1 { background: url(VV.png); background-size: contain; }
+    .proj-grad-2 { background: url(insta.png); background-size: contain; }
+    .proj-grad-3 { background: url(Creative.png); background-size: contain; }
+    .proj-grad-4 { background: url(Yucca.png); background-size: contain;}
+    .proj-grad-5 { background: url(orbitrip.png); background-size: contain; }
+    .proj-grad-6 { background: linear-gradient(135deg, #2e0a1a 0%, #6e1a3a 100%); }
+    .proj-grad-7 { background: url(Agro.png); background-size: contain; }
+    .proj-grad-8 { background: url(ss.png); background-size: contain; }
+    .proj-grad-9 { background: url(gigsure.png); background-size: contain; }
+    .proj-grad-10 { background: url(SN.png); background-size: contain; }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: rgba(0,0,0,0.55);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(2px);
+    }
+    .project-card:hover .project-overlay { opacity: 1; }
+
+    .btn-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.1);
+      color: white; font-size: 18px;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .btn-icon:hover { background: var(--purple-primary); border-color: var(--purple-primary); }
+
+    .project-body {
+      padding: 22px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-category {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--purple-light);
+      margin-bottom: 8px;
+    }
+
+    .project-body h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+    .project-tags span {
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-color);
+      font-size: 11px;
+      color: var(--text-secondary);
+      background: rgba(139,92,246,0.06);
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .view-project {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 600;
+      color: var(--purple-light);
+      text-decoration: none;
+      transition: gap var(--transition), color var(--transition);
+    }
+    .view-project:hover { gap: 10px; color: white; }
+
+    .project-status {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .status-live {
+      background: rgba(34,197,94,0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34,197,94,0.25);
+    }
+    .status-wip {
+      background: rgba(251,191,36,0.1);
+      color: #fbbf24;
+      border: 1px solid rgba(251,191,36,0.2);
+    }
+    .status-archived {
+      background: rgba(156,163,175,0.1);
+      color: #9ca3af;
+      border: 1px solid rgba(156,163,175,0.2);
+    }
+
+    /* =========================================
+       NO RESULTS
+    ========================================= */
+    #noResults {
+      display: none;
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-secondary);
+    }
+    #noResults i {
+      font-size: 48px;
+      color: var(--purple-dim);
+      margin-bottom: 16px;
+      display: block;
+    }
+    #noResults h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    /* =========================================
+       BACK TO TOP
+    ========================================= */
+    #backToTop {
+      position: fixed;
+      bottom: 32px; right: 32px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--gradient-purple);
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all var(--transition);
+      box-shadow: 0 4px 20px var(--purple-glow);
+      z-index: 500;
+    }
+    #backToTop.visible { opacity: 1; transform: translateY(0); }
+    #backToTop:hover { transform: translateY(-3px); box-shadow: 0 8px 28px var(--purple-glow); }
+
+    /* =========================================
+       CURSOR CANVAS
+    ========================================= */
+    #cursorCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    footer {
+      padding: 32px 60px;
+      text-align: center;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+    @media (max-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-card.featured { grid-column: span 2; }
+    }
+    @media (max-width: 768px) {
+      #navbar { padding: 16px 24px; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        flex-direction: column;
+        padding: 24px;
+        background: rgba(13,13,13,0.96);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+      .page-header { padding: 120px 24px 48px; }
+      .controls { padding: 0 24px; flex-direction: column; align-items: flex-start; }
+      .search-wrap { max-width: 100%; width: 100%; }
+      .projects-wrapper { padding: 0 24px 72px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Logo" height="60px">
+    </div>
+    <div class="nav-links">
+      <a href="index.html#about"      class="nav-link">About</a>
+      <a href="index.html#skills"     class="nav-link">Skills</a>
+      <a href="projects.html"         class="nav-link active">Projects</a>
+      <a href="index.html#contact"    class="nav-link">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="index.html" class="btn-back">
+        <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+      </a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <p class="label fade-up">Portfolio</p>
+    <h1 class="fade-up">All <span class="gradient-text">Projects</span></h1>
+    <p class="fade-up">A collection of everything I've built — from AI applications and web clones to full-stack products and creative experiments.</p>
+  </header>
+
+  <!-- SEARCH + FILTER -->
+  <div class="controls fade-up">
+    <div class="search-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Search projects…" aria-label="Search projects">
+    </div>
+    <div class="filter-tabs" role="group" aria-label="Filter projects by category">
+      <button class="filter-tab active" data-filter="all">All</button>
+      <button class="filter-tab" data-filter="ai-ml">AI / ML</button>
+      <button class="filter-tab" data-filter="web">Web Dev</button>
+      <button class="filter-tab" data-filter="ui-clone">UI Clone</button>
+      <button class="filter-tab" data-filter="tool">Tools</button>
+    </div>
+    <p class="results-count"><span id="countNum">10</span> projects</p>
+  </div>
+
+  <!-- PROJECTS GRID -->
+  <main class="projects-wrapper">
+    <div class="projects-grid" id="projectsGrid">
+
+      <!-- 1 — Vogue Vista (featured) -->
+      <div class="project-card featured fade-up" data-category="ai-ml" data-title="vogue vista">
+        <div class="project-img proj-grad-1">
+          <div class="img-placeholder"><i class="fa-solid fa-shirt"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/Vogue-Vista" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">AI / Fashion Tech</p>
+          <h3>Vogue Vista</h3>
+          <p class="project-desc">An AI-powered web application that analyzes a user's body shape and skin tone to recommend a personalized color palette and outfit combinations. Uses computer vision and ML classification models under the hood.</p>
+          <div class="project-tags">
+            <span>Python</span><span>Machine Learning</span><span>OpenCV</span><span>HTML/CSS</span><span>Flask</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 — Instagram Clone -->
+      <div class="project-card fade-up" data-category="ui-clone" data-title="instagram clone">
+        <div class="project-img proj-grad-2">
+          <div class="img-placeholder"><i class="fa-brands fa-instagram"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/Instagram-Webpage-" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://instagram-webpage.vercel.app/" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">UI Clone</p>
+          <h3>Instagram Clone</h3>
+          <p class="project-desc">Pixel-perfect recreation of Instagram's profile page and explore feed. Focused on responsive layout, CSS Grid, and matching the original's visual language.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 — Creative Agency -->
+      <div class="project-card fade-up" data-category="web" data-title="creative agency website">
+        <div class="project-img proj-grad-3">
+          <div class="img-placeholder"><i class="fa-solid fa-palette"></i></div>
+          <div class="project-overlay">
+            <a href="#" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">Web Design</p>
+          <h3>Creative Agency Website</h3>
+          <p class="project-desc">A modern landing page for a fictional creative agency with scroll-triggered animations, CSS custom properties, and interactive hover states.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>Animations</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 — Yucca Packaging -->
+      <div class="project-card fade-up" data-category="ui-clone" data-title="yucca packaging website clone">
+        <div class="project-img proj-grad-4">
+          <div class="img-placeholder"><i class="fa-solid fa-box"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/Yucca-Packaging-Clone" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://yucca-packaging-clone-three.vercel.app/" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">UI Clone</p>
+          <h3>Yucca Packaging Clone</h3>
+          <p class="project-desc">A front-end clone of the Yucca Packaging website, replicating its minimalist product showcase layout, smooth transitions, and responsive grid.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-archived">Archived</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 — Data Analysis Dashboard -->
+      <div class="project-card fade-up" data-category="ai-ml" data-title="data analysis dashboard">
+        <div class="project-img proj-grad-5">
+          <div class="img-placeholder"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/Orbitrip" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://orbitrip.onrender.com" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">Travel Tech</p>
+          <h3>Orbitirp</h3>
+          <p class="project-desc">An all-in-one travel management platform featuring trip planning, budget tracking, destination discovery, and seamless travel organization.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JS</span><span>Python</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-wip">In Progress</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 — Portfolio Website -->
+      <div class="project-card fade-up" data-category="web" data-title="personal portfolio website">
+        <div class="project-img proj-grad-6">
+          <div class="img-placeholder"><i class="fa-solid fa-user-astronaut"></i></div>
+          <div class="project-overlay">
+            <a href="#" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">Web Dev</p>
+          <h3>Personal Portfolio</h3>
+          <p class="project-desc">This very website — a multi-section portfolio with scroll animations, a typewriter effect, a 3D tilt on cards, cursor trail, and a contact form with validation.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <div class="project-footer">
+            <a href="index.html" class="view-project">Visit Site <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 — ML Classifier -->
+      <div class="project-card fade-up" data-category="ai-ml" data-title="image classifier ml model">
+        <div class="project-img proj-grad-7">
+          <div class="img-placeholder"><i class="fa-solid fa-leaf"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/AgroVision-AI" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://agro-vision-ai-lac.vercel.app/" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">Machine Learning</p>
+          <h3>AgroVision AI</h3>
+          <p class="project-desc">An AI-powered smart agriculture platform that helps farmers monitor crop health, predict diseases, optimize resources, and improve yields through data-driven insights and real-time analytics.</p>
+          <div class="project-tags">
+            <span>Python</span><span>TensorFlow</span><span>CNN</span><span>Jupyter</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-wip">In Progress</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 — To-Do App -->
+      <div class="project-card fade-up" data-category="tool" data-title="task manager to do app">
+        <div class="project-img proj-grad-8">
+          <div class="img-placeholder"><i class="fa-solid fa-person"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/SoulSync-AI" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://soulsync-ai-0njx.onrender.com" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">Social Networking</p>
+          <h3>SoulSync AI</h3>
+          <p class="project-desc">An AI-powered relationship platform that uses personality analysis and intelligent matchmaking to help users build meaningful and compatible connections.</p>
+          <div class="project-tags">
+            <span>HTML / CSS</span><span>JS</span><span>AI</span><span>LocalStorage</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" data-category="tool" data-title="task manager to do app">
+        <div class="project-img proj-grad-9">
+          <div class="img-placeholder"><i class="fa-solid fa-list-check"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/GigSure" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://gigsure-1.onrender.com" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">HRTech</p>
+          <h3>GigSure AI</h3>
+          <p class="project-desc">An AI-powered HRTech platform that streamlines hiring, candidate assessment, and workforce management through intelligent recruitment and automation tools.</p>
+          <div class="project-tags">
+            <span>HTML / CSS</span><span>JavaScript</span><span>AI</span><span>Automation</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" data-category="ui-clone" data-title="instagram clone">
+        <div class="project-img proj-grad-10">
+          <div class="img-placeholder"><i class="fa-solid fa-clone"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/Studio-Namma-Clone" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://studio-namma-clone-coral.vercel.app/" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">UI Clone</p>
+          <h3>Studio Namma Clone</h3>
+          <p class="project-desc">A pixel-perfect recreation of the Studio Namma website featuring immersive animations, interactive project showcases, smooth scrolling effects, video-rich sections, and a modern creative agency aesthetic built with HTML, CSS, and JavaScript.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projects-grid -->
+
+    <!-- NO RESULTS -->
+    <div id="noResults">
+      <i class="fa-solid fa-folder-open"></i>
+      <h3>No projects found</h3>
+      <p>Try a different search term or filter.</p>
+    </div>
+
+  </main>
+
+  <!-- BACK TO TOP -->
+  <button id="backToTop" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- CURSOR CANVAS -->
+  <canvas id="cursorCanvas"></canvas>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed &amp; built by <span class="gradient-text">Mahika Mangaonkar</span> &nbsp;•&nbsp; 2024</p>
+  </footer>
+
+  <script>
+    /* ---- Sticky nav ---- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ---- Mobile nav ---- */
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+
+    /* ---- Fade-up reveal ---- */
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(f => io.observe(f));
+
+    /* ---- Filter + Search ---- */
+    const cards = Array.from(document.querySelectorAll('.project-card'));
+    const countEl = document.getElementById('countNum');
+    const noResults = document.getElementById('noResults');
+    let activeFilter = 'all';
+    let searchTerm = '';
+
+    function applyFilters() {
+      let visible = 0;
+      cards.forEach(card => {
+        const matchCat = activeFilter === 'all' || card.dataset.category === activeFilter;
+        const matchSearch = card.dataset.title.includes(searchTerm);
+        const show = matchCat && matchSearch;
+        card.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      countEl.textContent = visible;
+      noResults.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        activeFilter = tab.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', e => {
+      searchTerm = e.target.value.toLowerCase().trim();
+      applyFilters();
+    });
+
+    /* ---- 3D card tilt ---- */
+    cards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(700px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-6px)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+
+    /* ---- Back to top ---- */
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      btt.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* ---- Cursor trail ---- */
+    const canvas = document.getElementById('cursorCanvas');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const particles = [];
+    let mx = -200, my = -200;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    class Particle {
+      constructor(x, y) {
+        this.x = x; this.y = y;
+        this.size = Math.random() * 4 + 1;
+        this.alpha = 0.65;
+        this.vx = (Math.random() - 0.5) * 1.5;
+        this.vy = (Math.random() - 0.5) * 1.5;
+      }
+      update() { this.x += this.vx; this.y += this.vy; this.alpha -= 0.025; this.size *= 0.96; }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, this.alpha);
+        ctx.fillStyle = `rgba(139,92,246,${this.alpha})`;
+        ctx.shadowBlur = 8; ctx.shadowColor = '#8B5CF6';
+        ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    (function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (mx > 0) particles.push(new Particle(mx, my));
+      for (let i = particles.length - 1; i >= 0; i--) {
+        particles[i].update(); particles[i].draw();
+        if (particles[i].alpha <= 0) particles.splice(i, 1);
+      }
+      requestAnimationFrame(loop);
+    })();
+  </script>
+</body>
+</html>

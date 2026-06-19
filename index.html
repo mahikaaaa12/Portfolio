@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Portfolio | Mahika Mangaonkar</title>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Logo" height="100px">
+    </div>
+    <div class="nav-links">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn-contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Me</button>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="page1" id="home">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+
+    <div class="hero-content">
+      <div class="hero-left">
+        <span class="hero-badge">AI/ML Student &nbsp;•&nbsp; Full Stack Developer</span>
+        <h1 class="hero-greeting">Hello, I'm</h1>
+        <h2 class="hero-name">Mahika<br><span class="gradient-text">Mangaonkar</span></h2>
+        <p class="hero-desc">Delivering efficient, scalable solutions to transform your tech vision into reality.</p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn-primary">View Projects</a>
+          <a href="Resume.pdf" class="btn-secondary">Download Resume</a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/mahikaaaa12" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/mahika-mangaonkar-323036334/" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/_._blue.side_._/" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-img-wrap">
+          <img src="Untitled-removebg-preview.png" alt="Mahika Mangaonkar">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="page2" id="about">
+    <div class="section-label">About Me</div>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <h2>ABOUT ME</h2>
+        <p>Hello! I'm Mahika Ravindra Mangaonkar, a Computer Science Engineering student specializing in Artificial Intelligence and Machine Learning. I am currently working on strengthening my knowledge in AI-based applications and full-stack development while continuously building real-world projects.</p>
+        <p>I aim to grow into a skilled technology professional who contributes to innovative and meaningful digital solutions, and I am always open to learning opportunities, internships, and collaborations.</p>
+      </div>
+      <div class="about-cards">
+        <div class="glass-card fade-up">
+          <div class="glass-card-icon">
+            <img src="skills.png" alt="Skills Icon">
+          </div>
+          <div class="glass-card-body">
+            <h4>Technical Skills</h4>
+            <p><span class="tag-label">Languages:</span> Python, Java, C, C++</p>
+            <p><span class="tag-label">Web:</span> HTML, CSS, JavaScript, Three.js</p>
+            <p><span class="tag-label">AI & Data:</span> NumPy, Pandas, Scikit-learn, Generative AI</p>
+            <p><span class="tag-label">Core CS:</span> Data Structures, ALgorithms, OOPS</p>
+            <p><span class="tag-label">Tools & Platforms:</span> Git, GitHub, VS Code, SQL</p>
+            <p><span class="tag-label">Frameworks:</span> Django, FastAPI</p>
+          </div>
+        </div>
+        <div class="glass-card fade-up">
+          <div class="glass-card-icon">
+            <img src="projects.png" alt="Projects Icon">
+          </div>
+          <div class="glass-card-body">
+            <h4>Featured Projects</h4>
+            <p>Vogue Vista — Body shape &amp; color palette analysis</p>
+            <p>Creative Agency Website</p>
+            <p>Yucca Packaging Website Clone</p>
+            <a href="#projects" class="inline-link">and many more →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section class="page3" id="skills">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title fade-up">SKILLS</h2>
+
+    <div class="skills-grid">
+      <!-- Programming -->
+      <div class="skill-group fade-up">
+        <div class="skill-group-header">
+          <i class="fa-solid fa-code skill-icon"></i>
+          <h3>Programming</h3>
+        </div>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>Python</span><span>90%</span></div>
+            <div class="skill-track"><div class="skill-fill" style="--w:90%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>Java</span><span>85%</span></div>
+            <div class="skill-track"><div class="skill-fill" style="--w:85%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>C / C++</span><span>80%</span></div>
+            <div class="skill-track"><div class="skill-fill" style="--w:80%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Web -->
+      <div class="skill-group fade-up">
+        <div class="skill-group-header">
+          <i class="fa-solid fa-globe skill-icon"></i>
+          <h3>Web Development</h3>
+        </div>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>HTML</span><span>95%</span></div>
+            <div class="skill-track"><div class="skill-fill" style="--w:95%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>CSS</span><span>90%</span></div>
+            <div class="skill-track"><div class="skill-fill" style="--w:90%"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span>JavaScript</span><span>80%</span></div>
+            <div class="skill-track"><div class="skill-fill" style="--w:80%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="skill-group fade-up">
+        <div class="skill-group-header">
+          <i class="fa-solid fa-screwdriver-wrench skill-icon"></i>
+          <h3>Libraries &amp; Tools</h3>
+        </div>
+        <div class="tool-tags">
+          <span class="tool-tag"><i class="fa-brands fa-github"></i> GitHub</span>
+          <span class="tool-tag"><i class="fa-solid fa-database"></i> SQL</span>
+          <span class="tool-tag"><i class="fa-solid fa-chart-bar"></i> Pandas</span>
+          <span class="tool-tag"><i class="fa-solid fa-calculator"></i> NumPy</span>
+          <span class="tool-tag"><i class="fa-solid fa-laptop-code"></i> VS Code</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section class="page4" id="projects">
+    <div class="section-label">Work</div>
+    <div class="section-heading fade-up">
+      <h2 class="section-title">PROJECTS</h2>
+      <a href="projects.html" class="view-all-link">View all Projects →</a>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card fade-up">
+        <div class="project-img project-img1">
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/Vogue-Vista" class="btn-icon"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="btn-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">AI / Fashion Tech</p>
+          <h3>Vogue Vista</h3>
+          <p class="project-desc">A body shape and color palette analysis website with personalized outfit recommendations powered by AI.</p>
+          <div class="project-tags">
+            <span>Python</span><span>Machine Learning</span><span>HTML/CSS</span>
+          </div>
+          <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-img project-img2">
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/Instagram-Webpage-" class="btn-icon"><i class="fa-brands fa-github"></i></a>
+            <a href="https://instagram-webpage.vercel.app/" class="btn-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">UI Clone</p>
+          <h3>Instagram Clone</h3>
+          <p class="project-desc">Designed an Instagram clone showcasing the profile and landing page section of the app with pixel-perfect CSS.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-img project-img3">
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/Orbitrip" class="btn-icon"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="btn-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">TRAVEL TECH</p>
+          <h3>Orbitirp</h3>
+          <p class="project-desc">An all-in-one travel management platform featuring trip planning, budget tracking, destination discovery, and seamless travel organization.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>Animations</span>
+          </div>
+          <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS SECTION -->
+  <section class="achievements" id="achievements">
+    <div class="section-label">Stats</div>
+    <h2 class="section-title fade-up">ACHIEVEMENTS</h2>
+    <div class="achieve-grid">
+      <div class="achieve-card fade-up">
+        <i class="fa-solid fa-code achieve-icon"></i>
+        <div class="achieve-num" data-target="300">0</div>
+        <p>LeetCode Problems</p>
+      </div>
+      <div class="achieve-card fade-up">
+        <i class="fa-brands fa-github achieve-icon"></i>
+        <div class="achieve-num" data-target="20">0</div>
+        <p>GitHub Repositories</p>
+      </div>
+      <div class="achieve-card fade-up">
+        <i class="fa-solid fa-award achieve-icon"></i>
+        <div class="achieve-num" data-target="5">0</div>
+        <p>Certifications</p>
+      </div>
+      <div class="achieve-card fade-up">
+        <i class="fa-solid fa-diagram-project achieve-icon"></i>
+        <div class="achieve-num" data-target="12">0</div>
+        <p>Projects Built</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY TIMELINE -->
+  <section class="experience" id="experience">
+    <div class="section-label">My Story</div>
+    <h2 class="section-title fade-up">JOURNEY</h2>
+    <div class="timeline">
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--education">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2024</span>
+            <span class="timeline-badge timeline-badge--education">Education</span>
+          </div>
+          <h4>Began B.Tech CSE (AI &amp; ML)</h4>
+          <p>Started undergraduate studies at Parul University with a specialization in Artificial Intelligence and Machine Learning. Currently maintaining a CGPA of 9.82.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--cert">
+          <i class="fa-solid fa-certificate"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2025</span>
+            <span class="timeline-badge timeline-badge--cert">Certification</span>
+          </div>
+          <h4>Technical Certifications</h4>
+          <p>Completed Pearson certifications in HTML &amp; CSS and JavaScript, strengthening front-end development fundamentals.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--hackathon">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2025</span>
+            <span class="timeline-badge timeline-badge--hackathon">Hackathon</span>
+          </div>
+          <h4>Smart India Hackathon</h4>
+          <p>Successfully cleared Round 1 of Smart India Hackathon and collaborated on solving real-world problem statements.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--hackathon">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2025</span>
+            <span class="timeline-badge timeline-badge--hackathon">Hackathon</span>
+          </div>
+          <h4>Adobe India Hackathon</h4>
+          <p>Participated in Adobe India Hackathon, gaining experience in rapid prototyping, teamwork, and solution development.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--project">
+          <i class="fa-solid fa-diagram-project"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2025</span>
+            <span class="timeline-badge timeline-badge--project">Project</span>
+          </div>
+          <h4>Vogue Vista</h4>
+          <p>Developed an AI-powered fashion recommendation platform featuring body-shape analysis and personalized styling suggestions.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--cert">
+          <i class="fa-solid fa-certificate"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2026</span>
+            <span class="timeline-badge timeline-badge--cert">Certification</span>
+          </div>
+          <h4>AWS Data Engineering Certification</h4>
+          <p>Completed AWS Academy Data Engineering certification and gained exposure to cloud-based data engineering concepts.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--cert">
+          <i class="fa-solid fa-certificate"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2026</span>
+            <span class="timeline-badge timeline-badge--cert">Certification</span>
+          </div>
+          <h4>NPTEL CN &amp; IP Certification</h4>
+          <p>Completed NPTEL Computer Networks and Internet Protocol certification, strengthening networking fundamentals.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--project">
+          <i class="fa-solid fa-diagram-project"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2026</span>
+            <span class="timeline-badge timeline-badge--project">Project</span>
+          </div>
+          <h4>GigSure AI</h4>
+          <p>Built an AI-powered freelance project risk assessment platform for evaluating project reliability and client credibility.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--project">
+          <i class="fa-solid fa-diagram-project"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2026</span>
+            <span class="timeline-badge timeline-badge--project">Project</span>
+          </div>
+          <h4>OrbitTrip</h4>
+          <p>Developed a travel planning and management platform featuring itinerary creation, destination discovery, and trip organization tools.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--project">
+          <i class="fa-solid fa-diagram-project"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2026</span>
+            <span class="timeline-badge timeline-badge--project">Project</span>
+          </div>
+          <h4>AgroVision AI</h4>
+          <p>Created a machine learning-based crop disease detection system using image analysis to assist agricultural decision-making.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--project">
+          <i class="fa-solid fa-diagram-project"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2026</span>
+            <span class="timeline-badge timeline-badge--project">Project</span>
+          </div>
+          <h4>SoulSync AI</h4>
+          <p>Built an AI-powered matchmaking platform implementing compatibility-based recommendations and user profiling.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--hackathon">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2026</span>
+            <span class="timeline-badge timeline-badge--hackathon">Hackathon</span>
+          </div>
+          <h4>Guidewire DevTrails Hackathon</h4>
+          <p>Successfully cleared Phase 1 and Phase 2, demonstrating strong problem-solving and software development skills.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-dot timeline-dot--achievement">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="timeline-year">2026</span>
+            <span class="timeline-badge timeline-badge--achievement">Achievement</span>
+          </div>
+          <h4>Competitive Programming Milestone</h4>
+          <p>Solved 323+ LeetCode problems, strengthening proficiency in data structures, algorithms, and problem-solving.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CODING PROFILES -->
+  <section class="profiles" id="profiles">
+    <div class="section-label">Profiles</div>
+    <h2 class="section-title fade-up">CODING PROFILES</h2>
+    <div class="profiles-grid">
+      <a href="https://github.com/mahikaaaa12" class="profile-card fade-up">
+        <i class="fa-brands fa-github profile-icon"></i>
+        <h4>GitHub</h4>
+        <p>20+ repositories</p>
+      </a>
+      <a href="https://leetcode.com/u/Mahika20/" class="profile-card fade-up">
+        <i class="fa-solid fa-code profile-icon"></i>
+        <h4>LeetCode</h4>
+        <p>300+ problems solved</p>
+      </a>
+      <a href="#" class="profile-card fade-up">
+        <i class="fa-solid fa-h profile-icon"></i>
+        <h4>HackerRank</h4>
+        <p>5★ in Python</p>
+      </a>
+      <a href="#" class="profile-card fade-up">
+        <i class="fa-solid fa-trophy profile-icon"></i>
+        <h4>CodeChef</h4>
+        <p>Competitive rating</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact" id="contact">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title fade-up">CONTACT</h2>
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <h3>Let's work together</h3>
+        <p>I'm open to internships, collaborations, and exciting projects. Feel free to reach out!</p>
+        <div class="contact-links">
+          <a href="#" class="contact-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          <a href="#" class="contact-link"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a href="mailto:mahika@email.com" class="contact-link"><i class="fa-solid fa-envelope"></i> Email</a>
+        </div>
+      </div>
+      <form class="contact-form fade-up" onsubmit="return false;">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" rows="5" placeholder="What's on your mind?"></textarea>
+        </div>
+        <button type="submit" class="btn-primary btn-full">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed &amp; built by <span class="gradient-text">Mahika Mangaonkar</span> &nbsp;•&nbsp; 2026</p>
+  </footer>
+
+  <script>
+    // Sticky nav with blur
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile nav toggle
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+
+    // Animated counters
+    const counters = document.querySelectorAll('.achieve-num');
+    const observerAchieve = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          let current = 0;
+          const step = Math.ceil(target / 60);
+          const timer = setInterval(() => {
+            current = Math.min(current + step, target);
+            el.textContent = current + '+';
+            if (current >= target) clearInterval(timer);
+          }, 25);
+          observerAchieve.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => observerAchieve.observe(c));
+
+    // Fade-up reveal
+    const faders = document.querySelectorAll('.fade-up');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    faders.forEach(f => io.observe(f));
+
+    // Skill bars animate on scroll
+    const skillFills = document.querySelectorAll('.skill-fill');
+    const skillObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.width = entry.target.style.getPropertyValue('--w') ||
+            getComputedStyle(entry.target).getPropertyValue('--w');
+          entry.target.classList.add('animated');
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    skillFills.forEach(s => skillObserver.observe(s));
+  </script>
+</body>
+</html>
