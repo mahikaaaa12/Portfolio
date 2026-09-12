@@ -629,7 +629,7 @@ body {
 
 .skills-badge-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -694,12 +694,15 @@ body {
   cursor: default;
 }
 
-.skill-badge--primary { color: #c084fc; border-color: rgba(192,132,252,0.3); background: rgba(192,132,252,0.08); }
-.skill-badge--web     { color: #60a5fa; border-color: rgba(96,165,250,0.3);  background: rgba(96,165,250,0.08);  }
-.skill-badge--ai      { color: #34d399; border-color: rgba(52,211,153,0.3);  background: rgba(52,211,153,0.08);  }
-.skill-badge--tool    { color: #f59e0b; border-color: rgba(245,158,11,0.3);  background: rgba(245,158,11,0.08);  }
-.skill-badge--cs      { color: #f472b6; border-color: rgba(244,114,182,0.3); background: rgba(244,114,182,0.08); }
-.skill-badge--soft    { color: var(--purple-light); border-color: var(--border-color); background: var(--purple-dim); }
+.skill-badge--primary  { color: #c084fc; border-color: rgba(192,132,252,0.3); background: rgba(192,132,252,0.08); }
+.skill-badge--web      { color: #60a5fa; border-color: rgba(96,165,250,0.3);  background: rgba(96,165,250,0.08);  }
+.skill-badge--backend  { color: #fb923c; border-color: rgba(251,146,60,0.3);  background: rgba(251,146,60,0.08);  }
+.skill-badge--ai       { color: #34d399; border-color: rgba(52,211,153,0.3);  background: rgba(52,211,153,0.08);  }
+.skill-badge--db       { color: #22d3ee; border-color: rgba(34,211,238,0.3);  background: rgba(34,211,238,0.08);  }
+.skill-badge--tool     { color: #f59e0b; border-color: rgba(245,158,11,0.3);  background: rgba(245,158,11,0.08);  }
+.skill-badge--api      { color: #818cf8; border-color: rgba(129,140,248,0.3); background: rgba(129,140,248,0.08); }
+.skill-badge--cs       { color: #f472b6; border-color: rgba(244,114,182,0.3); background: rgba(244,114,182,0.08); }
+.skill-badge--soft     { color: var(--purple-light); border-color: var(--border-color); background: var(--purple-dim); }
 
 .skill-badge:hover { transform: translateY(-2px); filter: brightness(1.2); }
 
@@ -797,6 +800,24 @@ body {
   content: '⚡';
   font-size: 52px;
   filter: drop-shadow(0 0 20px rgba(245,158,11,0.7));
+}
+.project-img-trustgraph {
+  background: linear-gradient(135deg, #0d1a0d 0%, #1a3320 40%, #0f2d1a 70%, #162d12 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.project-img-trustgraph::after {
+  content: '🛡️';
+  font-size: 52px;
+  filter: drop-shadow(0 0 20px rgba(52,211,153,0.7));
+}
+.project-img-erflow {
+  background: linear-gradient(135deg, #0a1a2e 0%, #0d3060 40%, #1a4a8a 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.project-img-erflow::after {
+  content: '🏥';
+  font-size: 52px;
+  filter: drop-shadow(0 0 20px rgba(96,165,250,0.7));
 }
 
 .project-featured-label {
@@ -1158,6 +1179,8 @@ body {
 .cert-logo--nptel   { background: rgba(96,165,250,0.12); color: #60a5fa; border: 1px solid rgba(96,165,250,0.3); }
 .cert-logo--pearson { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
 .cert-logo--hr      { background: rgba(0,234,100,0.12); color: #00ea64; border: 1px solid rgba(0,234,100,0.3); }
+.cert-logo--ibm     { background: rgba(79,108,219,0.12); color: #4f6cdb; border: 1px solid rgba(79,108,219,0.3); }
+.cert-logo--nvidia  { background: rgba(118,185,0,0.12);  color: #76b900; border: 1px solid rgba(118,185,0,0.3);  }
 
 .cert-body { flex: 1; min-width: 0; }
 
@@ -1188,7 +1211,8 @@ body {
 }
 
 .cert-year {
-  display: inline-block;
+  display: block;
+  width: fit-content;
   font-size: 11px;
   font-weight: 600;
   color: var(--text-secondary);
@@ -1196,6 +1220,32 @@ body {
   border: 1px solid var(--border-subtle);
   padding: 2px 8px;
   border-radius: var(--radius-pill);
+  margin-bottom: 4px;
+}
+
+.btn-cert-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--purple-light);
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: all var(--transition);
+  cursor: pointer;
+  width: fit-content;
+}
+.btn-cert-link:hover {
+  background: rgba(139, 92, 246, 0.22);
+  border-color: var(--purple-primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
 }
 
 /* =========================================

@@ -272,11 +272,45 @@
     }
 
     /* Featured (wide) card */
+    /* Featured / wide cards (kept for backward compat but not used in new ordering) */
     .project-card.featured {
       grid-column: span 2;
     }
     .project-card.featured .project-img {
       height: 260px;
+    }
+
+    /* ── Flagship badge (2 newest projects only) ── */
+    .project-card.flagship {
+      border-color: rgba(139,92,246,0.45);
+      box-shadow: 0 0 0 1px rgba(139,92,246,0.2), 0 8px 32px rgba(139,92,246,0.18);
+      position: relative;
+    }
+    .project-card.flagship .project-img {
+      height: 220px;
+    }
+    .project-card.flagship:hover {
+      border-color: var(--purple-primary);
+      box-shadow: 0 0 0 1px rgba(139,92,246,0.5), 0 16px 48px rgba(139,92,246,0.32);
+    }
+    .card-new-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: linear-gradient(135deg, rgba(139,92,246,0.85) 0%, rgba(167,139,250,0.85) 100%);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      pointer-events: none;
     }
 
     .project-card {
@@ -326,6 +360,8 @@
     .proj-grad-8 { background: url(ss.png); background-size: contain; }
     .proj-grad-9 { background: url(gigsure.png); background-size: contain; }
     .proj-grad-10 { background: url(SN.png); background-size: contain; }
+    .proj-grad-11 { background: linear-gradient(135deg, #0a1a2e 0%, #0d3060 40%, #1a4a8a 100%); }
+    .proj-grad-12 { background: linear-gradient(135deg, #0d1a0d 0%, #1a3320 40%, #0f2d1a 70%, #162d12 100%); }
 
     .project-overlay {
       position: absolute;
@@ -437,6 +473,42 @@
       background: rgba(156,163,175,0.1);
       color: #9ca3af;
       border: 1px solid rgba(156,163,175,0.2);
+    }
+
+    /* ── Flagship: capabilities list ── */
+    .project-capabilities {
+      margin-bottom: 16px;
+    }
+    .project-capabilities-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 8px;
+      opacity: 0.8;
+    }
+    .cap-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 12px;
+    }
+    .cap-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .cap-item::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--purple-primary);
+      flex-shrink: 0;
+      opacity: 0.7;
     }
 
     /* =========================================
@@ -574,19 +646,92 @@
     <div class="filter-tabs" role="group" aria-label="Filter projects by category">
       <button class="filter-tab active" data-filter="all">All</button>
       <button class="filter-tab" data-filter="ai-ml">AI / ML</button>
+      <button class="filter-tab" data-filter="fullstack">Full Stack</button>
       <button class="filter-tab" data-filter="web">Web Dev</button>
       <button class="filter-tab" data-filter="ui-clone">UI Clone</button>
       <button class="filter-tab" data-filter="tool">Tools</button>
     </div>
-    <p class="results-count"><span id="countNum">10</span> projects</p>
+    <p class="results-count"><span id="countNum">12</span> projects</p>
   </div>
 
   <!-- PROJECTS GRID -->
   <main class="projects-wrapper">
     <div class="projects-grid" id="projectsGrid">
 
-      <!-- 1 — Vogue Vista (featured) -->
-      <div class="project-card featured fade-up" data-category="ai-ml" data-title="vogue vista">
+      <!-- 1 — TrustGraph (flagship) -->
+      <div class="project-card flagship fade-up" data-category="fullstack" data-title="trustgraph ai security full stack mern python machine learning computer vision llm document image forensics phishing">
+        <div class="project-img proj-grad-12">
+          <span class="card-new-badge">✦ 2026</span>
+          <div class="img-placeholder"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/TrustGraph" class="btn-icon" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+            <a href="https://trustgraph-client.onrender.com" class="btn-icon" aria-label="Live Demo" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">AI / Security · Full Stack</p>
+          <h3>TrustGraph</h3>
+          <p class="project-desc">An AI-powered digital trust and security platform designed to analyze documents, images, websites, text authenticity, and transaction risks.</p>
+          <div class="project-capabilities">
+            <p class="project-capabilities-label">Key Capabilities</p>
+            <div class="cap-grid">
+              <span class="cap-item">Document analysis</span>
+              <span class="cap-item">Image forensics</span>
+              <span class="cap-item">Phishing &amp; website inspection</span>
+              <span class="cap-item">Abuse-ring detection</span>
+              <span class="cap-item">Risk simulation</span>
+              <span class="cap-item">Explainable risk assessment</span>
+              <span class="cap-item">Forensic audit reporting</span>
+              <span class="cap-item">Secure authentication</span>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span>MERN</span><span>Python</span><span>Machine Learning</span><span>Computer Vision</span><span>AI / LLMs</span><span>REST APIs</span><span>MongoDB</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://trustgraph-client.onrender.com" class="view-project" target="_blank" rel="noopener noreferrer">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 — AI-Based ER Patient Flow Prediction (flagship) -->
+      <div class="project-card flagship fade-up" data-category="ai-ml" data-title="ai-based er patient flow prediction emergency room machine learning fastapi react healthcare">
+        <div class="project-img proj-grad-11">
+          <span class="card-new-badge">✦ 2026</span>
+          <div class="img-placeholder"><i class="fa-solid fa-hospital-user"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/ER-Patient-Flow-Prediction" class="btn-icon" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+            <a href="https://erflow-frontend.onrender.com" class="btn-icon" aria-label="Live Demo" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">AI / Machine Learning · Healthcare</p>
+          <h3>AI-Based ER Patient Flow Prediction</h3>
+          <p class="project-desc">An AI-based web application for predicting and analyzing Emergency Room patient flow to support patient management and resource planning.</p>
+          <div class="project-capabilities">
+            <p class="project-capabilities-label">Key Capabilities</p>
+            <div class="cap-grid">
+              <span class="cap-item">ER patient-flow prediction</span>
+              <span class="cap-item">Patient-flow analysis</span>
+              <span class="cap-item">ML forecasting</span>
+              <span class="cap-item">Data-driven resource planning</span>
+              <span class="cap-item">Interactive chatbot</span>
+              <span class="cap-item">System navigation assistance</span>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span>React</span><span>FastAPI</span><span>Python</span><span>Machine Learning</span><span>Tailwind CSS</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://erflow-frontend.onrender.com" class="view-project" target="_blank" rel="noopener noreferrer">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 — Vogue Vista -->
+      <div class="project-card fade-up" data-category="ai-ml" data-title="vogue vista ai fashion body shape skin tone outfit recommendation">
         <div class="project-img proj-grad-1">
           <div class="img-placeholder"><i class="fa-solid fa-shirt"></i></div>
           <div class="project-overlay">
@@ -608,146 +753,8 @@
         </div>
       </div>
 
-      <!-- 2 — Instagram Clone -->
-      <div class="project-card fade-up" data-category="ui-clone" data-title="instagram clone">
-        <div class="project-img proj-grad-2">
-          <div class="img-placeholder"><i class="fa-brands fa-instagram"></i></div>
-          <div class="project-overlay">
-            <a href="https://github.com/mahikaaaa12/Instagram-Webpage-" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="https://instagram-webpage.vercel.app/" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-        <div class="project-body">
-          <p class="project-category">UI Clone</p>
-          <h3>Instagram Clone</h3>
-          <p class="project-desc">Pixel-perfect recreation of Instagram's profile page and explore feed. Focused on responsive layout, CSS Grid, and matching the original's visual language.</p>
-          <div class="project-tags">
-            <span>HTML</span><span>CSS</span><span>JavaScript</span>
-          </div>
-          <div class="project-footer">
-            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
-            <span class="project-status status-live">Live</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 — Creative Agency -->
-      <div class="project-card fade-up" data-category="web" data-title="creative agency website">
-        <div class="project-img proj-grad-3">
-          <div class="img-placeholder"><i class="fa-solid fa-palette"></i></div>
-          <div class="project-overlay">
-            <a href="#" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-        <div class="project-body">
-          <p class="project-category">Web Design</p>
-          <h3>Creative Agency Website</h3>
-          <p class="project-desc">A modern landing page for a fictional creative agency with scroll-triggered animations, CSS custom properties, and interactive hover states.</p>
-          <div class="project-tags">
-            <span>HTML</span><span>CSS</span><span>Animations</span>
-          </div>
-          <div class="project-footer">
-            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
-            <span class="project-status status-live">Live</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4 — Yucca Packaging -->
-      <div class="project-card fade-up" data-category="ui-clone" data-title="yucca packaging website clone">
-        <div class="project-img proj-grad-4">
-          <div class="img-placeholder"><i class="fa-solid fa-box"></i></div>
-          <div class="project-overlay">
-            <a href="https://github.com/mahikaaaa12/Yucca-Packaging-Clone" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="https://yucca-packaging-clone-three.vercel.app/" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-        <div class="project-body">
-          <p class="project-category">UI Clone</p>
-          <h3>Yucca Packaging Clone</h3>
-          <p class="project-desc">A front-end clone of the Yucca Packaging website, replicating its minimalist product showcase layout, smooth transitions, and responsive grid.</p>
-          <div class="project-tags">
-            <span>HTML</span><span>CSS</span><span>JavaScript</span>
-          </div>
-          <div class="project-footer">
-            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
-            <span class="project-status status-archived">Archived</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5 — Data Analysis Dashboard -->
-      <div class="project-card fade-up" data-category="ai-ml" data-title="data analysis dashboard">
-        <div class="project-img proj-grad-5">
-          <div class="img-placeholder"><i class="fa-solid fa-chart-line"></i></div>
-          <div class="project-overlay">
-            <a href="https://github.com/mahikaaaa12/Orbitrip" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="https://orbitrip.onrender.com" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-        <div class="project-body">
-          <p class="project-category">Travel Tech</p>
-          <h3>Orbitirp</h3>
-          <p class="project-desc">An all-in-one travel management platform featuring trip planning, budget tracking, destination discovery, and seamless travel organization.</p>
-          <div class="project-tags">
-            <span>HTML</span><span>CSS</span><span>JS</span><span>Python</span>
-          </div>
-          <div class="project-footer">
-            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
-            <span class="project-status status-wip">In Progress</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 6 — Portfolio Website -->
-      <div class="project-card fade-up" data-category="web" data-title="personal portfolio website">
-        <div class="project-img proj-grad-6">
-          <div class="img-placeholder"><i class="fa-solid fa-user-astronaut"></i></div>
-          <div class="project-overlay">
-            <a href="#" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-        <div class="project-body">
-          <p class="project-category">Web Dev</p>
-          <h3>Personal Portfolio</h3>
-          <p class="project-desc">This very website — a multi-section portfolio with scroll animations, a typewriter effect, a 3D tilt on cards, cursor trail, and a contact form with validation.</p>
-          <div class="project-tags">
-            <span>HTML</span><span>CSS</span><span>JavaScript</span>
-          </div>
-          <div class="project-footer">
-            <a href="index.html" class="view-project">Visit Site <i class="fa-solid fa-arrow-right"></i></a>
-            <span class="project-status status-live">Live</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 7 — ML Classifier -->
-      <div class="project-card fade-up" data-category="ai-ml" data-title="image classifier ml model">
-        <div class="project-img proj-grad-7">
-          <div class="img-placeholder"><i class="fa-solid fa-leaf"></i></div>
-          <div class="project-overlay">
-            <a href="https://github.com/mahikaaaa12/AgroVision-AI" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="https://agro-vision-ai-lac.vercel.app/" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-        <div class="project-body">
-          <p class="project-category">Machine Learning</p>
-          <h3>AgroVision AI</h3>
-          <p class="project-desc">An AI-powered smart agriculture platform that helps farmers monitor crop health, predict diseases, optimize resources, and improve yields through data-driven insights and real-time analytics.</p>
-          <div class="project-tags">
-            <span>Python</span><span>TensorFlow</span><span>CNN</span><span>Jupyter</span>
-          </div>
-          <div class="project-footer">
-            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
-            <span class="project-status status-wip">In Progress</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 8 — To-Do App -->
-      <div class="project-card fade-up" data-category="tool" data-title="task manager to do app">
+      <!-- 4 — SoulSync AI -->
+      <div class="project-card fade-up" data-category="tool" data-title="soulsync ai relationship matchmaking personality social networking">
         <div class="project-img proj-grad-8">
           <div class="img-placeholder"><i class="fa-solid fa-person"></i></div>
           <div class="project-overlay">
@@ -769,7 +776,8 @@
         </div>
       </div>
 
-      <div class="project-card fade-up" data-category="tool" data-title="task manager to do app">
+      <!-- 5 — GigSure AI -->
+      <div class="project-card fade-up" data-category="tool" data-title="gigsure ai hrtech hiring recruitment workforce automation">
         <div class="project-img proj-grad-9">
           <div class="img-placeholder"><i class="fa-solid fa-list-check"></i></div>
           <div class="project-overlay">
@@ -791,7 +799,77 @@
         </div>
       </div>
 
-      <div class="project-card fade-up" data-category="ui-clone" data-title="instagram clone">
+      <!-- 6 — AgroVision AI -->
+      <div class="project-card fade-up" data-category="ai-ml" data-title="agrovision ai agriculture crop disease machine learning image classifier">
+        <div class="project-img proj-grad-7">
+          <div class="img-placeholder"><i class="fa-solid fa-leaf"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/AgroVision-AI" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://agro-vision-ai-lac.vercel.app/" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">Machine Learning</p>
+          <h3>AgroVision AI</h3>
+          <p class="project-desc">An AI-powered smart agriculture platform that helps farmers monitor crop health, predict diseases, optimize resources, and improve yields through data-driven insights and real-time analytics.</p>
+          <div class="project-tags">
+            <span>Python</span><span>TensorFlow</span><span>CNN</span><span>Jupyter</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-wip">In Progress</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 — OrbitTrip -->
+      <div class="project-card fade-up" data-category="web" data-title="orbitrip orbitrip travel management platform trip planning budget tracking">
+        <div class="project-img proj-grad-5">
+          <div class="img-placeholder"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/Orbitrip" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://orbitrip.onrender.com" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">Travel Tech</p>
+          <h3>OrbitTrip</h3>
+          <p class="project-desc">An all-in-one travel management platform featuring trip planning, budget tracking, destination discovery, and seamless travel organization.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JS</span><span>Python</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-wip">In Progress</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 — Personal Portfolio -->
+      <div class="project-card fade-up" data-category="web" data-title="personal portfolio website animations typewriter scroll">
+        <div class="project-img proj-grad-6">
+          <div class="img-placeholder"><i class="fa-solid fa-user-astronaut"></i></div>
+          <div class="project-overlay">
+            <a href="#" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">Web Dev</p>
+          <h3>Personal Portfolio</h3>
+          <p class="project-desc">This very website — a multi-section portfolio with scroll animations, a typewriter effect, a 3D tilt on cards, cursor trail, and a contact form with validation.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <div class="project-footer">
+            <a href="index.html" class="view-project">Visit Site <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 — Studio Namma Clone -->
+      <div class="project-card fade-up" data-category="ui-clone" data-title="studio namma clone creative agency animations javascript html css">
         <div class="project-img proj-grad-10">
           <div class="img-placeholder"><i class="fa-solid fa-clone"></i></div>
           <div class="project-overlay">
@@ -802,13 +880,82 @@
         <div class="project-body">
           <p class="project-category">UI Clone</p>
           <h3>Studio Namma Clone</h3>
-          <p class="project-desc">A pixel-perfect recreation of the Studio Namma website featuring immersive animations, interactive project showcases, smooth scrolling effects, video-rich sections, and a modern creative agency aesthetic built with HTML, CSS, and JavaScript.</p>
+          <p class="project-desc">A pixel-perfect recreation of the Studio Namma website featuring immersive animations, interactive project showcases, smooth scrolling effects, video-rich sections, and a modern creative agency aesthetic.</p>
           <div class="project-tags">
             <span>HTML</span><span>CSS</span><span>JavaScript</span>
           </div>
           <div class="project-footer">
             <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
             <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 — Instagram Clone -->
+      <div class="project-card fade-up" data-category="ui-clone" data-title="instagram clone profile feed css grid responsive layout">
+        <div class="project-img proj-grad-2">
+          <div class="img-placeholder"><i class="fa-brands fa-instagram"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/Instagram-Webpage-" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://instagram-webpage.vercel.app/" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">UI Clone</p>
+          <h3>Instagram Clone</h3>
+          <p class="project-desc">Pixel-perfect recreation of Instagram's profile page and explore feed. Focused on responsive layout, CSS Grid, and matching the original's visual language.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 — Creative Agency Website -->
+      <div class="project-card fade-up" data-category="web" data-title="creative agency website landing page animations css hover">
+        <div class="project-img proj-grad-3">
+          <div class="img-placeholder"><i class="fa-solid fa-palette"></i></div>
+          <div class="project-overlay">
+            <a href="#" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">Web Design</p>
+          <h3>Creative Agency Website</h3>
+          <p class="project-desc">A modern landing page for a fictional creative agency with scroll-triggered animations, CSS custom properties, and interactive hover states.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>Animations</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-live">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 — Yucca Packaging Clone -->
+      <div class="project-card fade-up" data-category="ui-clone" data-title="yucca packaging website clone minimalist product showcase responsive">
+        <div class="project-img proj-grad-4">
+          <div class="img-placeholder"><i class="fa-solid fa-box"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/mahikaaaa12/Yucca-Packaging-Clone" class="btn-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://yucca-packaging-clone-three.vercel.app/" class="btn-icon" aria-label="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-category">UI Clone</p>
+          <h3>Yucca Packaging Clone</h3>
+          <p class="project-desc">A front-end clone of the Yucca Packaging website, replicating its minimalist product showcase layout, smooth transitions, and responsive grid.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="view-project">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="project-status status-archived">Archived</span>
           </div>
         </div>
       </div>
@@ -861,6 +1008,8 @@
     const cards = Array.from(document.querySelectorAll('.project-card'));
     const countEl = document.getElementById('countNum');
     const noResults = document.getElementById('noResults');
+    /* initialise count to actual rendered cards */
+    countEl.textContent = cards.length;
     let activeFilter = 'all';
     let searchTerm = '';
 
@@ -891,8 +1040,8 @@
       applyFilters();
     });
 
-    /* ---- 3D card tilt ---- */
-    cards.forEach(card => {
+    /* ---- 3D card tilt (covers all cards including new ones) ---- */
+    document.querySelectorAll('.project-card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
