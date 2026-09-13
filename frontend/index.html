@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>Mahika Mangaonkar — AI/ML Developer & Full Stack Engineer</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
   <!-- NAVIGATION -->
   <nav id="navbar">
     <div class="nav-logo">
-      <img src="logo.png" alt="Mahika Mangaonkar Logo" height="100px">
+      <img src="assets/images/logo.png" alt="Mahika Mangaonkar Logo" height="100px">
     </div>
     <div class="nav-links" id="navLinks">
       <a href="#about" class="nav-link">About</a>
@@ -26,7 +26,7 @@
       <a href="#contact" class="nav-link">Contact</a>
     </div>
     <div class="nav-cta">
-      <a href="Resume.pdf" class="btn-resume" download><i class="fa-solid fa-download"></i> Resume</a>
+      <a href="assets/documents/Resume.pdf" class="btn-resume" download><i class="fa-solid fa-download"></i> Resume</a>
       <button class="btn-contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
@@ -75,7 +75,7 @@
 
         <div class="hero-btns">
           <a href="#projects" class="btn-primary"><i class="fa-solid fa-rocket"></i> View Projects</a>
-          <a href="Resume.pdf" class="btn-secondary" download><i class="fa-solid fa-download"></i> Download Resume</a>
+          <a href="assets/documents/Resume.pdf" class="btn-secondary" download><i class="fa-solid fa-download"></i> Download Resume</a>
         </div>
         <div class="hero-socials">
           <a href="https://github.com/mahikaaaa12" class="social-icon" aria-label="GitHub" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
@@ -88,7 +88,7 @@
       <!-- HERO IMAGE — PRESERVED EXACTLY AS-IS -->
       <div class="hero-right">
         <div class="hero-img-wrap">
-          <img src="illustration-removebg-preview.png" alt="Mahika Mangaonkar">
+          <img src="assets/images/illustration-removebg-preview.png" alt="Mahika Mangaonkar">
         </div>
       </div>
     </div>
@@ -118,7 +118,7 @@
       <div class="about-cards">
         <div class="glass-card fade-up">
           <div class="glass-card-icon">
-            <img src="skills.png" alt="Skills Icon">
+            <img src="assets/images/skills.png" alt="Skills Icon">
           </div>
           <div class="glass-card-body">
             <h4>Core Competencies</h4>
@@ -132,7 +132,7 @@
         </div>
         <div class="glass-card fade-up">
           <div class="glass-card-icon">
-            <img src="projects.png" alt="Projects Icon">
+            <img src="assets/images/projects.png" alt="Projects Icon">
           </div>
           <div class="glass-card-body">
             <h4>What I Build</h4>
@@ -766,11 +766,13 @@
             <i class="fa-solid fa-envelope"></i> mahika@email.com
           </a>
         </div>
-        <a href="Resume.pdf" class="btn-primary btn-resume-cta" download>
+        <a href="assets/documents/Resume.pdf" class="btn-primary btn-resume-cta" download>
           <i class="fa-solid fa-download"></i> Download Resume
         </a>
       </div>
       <form class="contact-form fade-up" onsubmit="handleFormSubmit(event)">
+        <!-- Honeypot field (anti-spam) -->
+        <input type="text" name="website" id="website" style="display:none !important; position:absolute; left:-9999px;" tabindex="-1" autocomplete="off">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" placeholder="Your name" required>
@@ -801,169 +803,6 @@
     </div>
   </footer>
 
-  <script>
-    /* ==========================================================================
-       CERTIFICATE LINKS CONFIGURATION
-       To add your certificate links:
-       Replace "PASTE_DRIVE_LINK_HERE" below with your actual Google Drive URL.
-       Example: certificateUrl: "https://drive.google.com/file/d/12345/view"
-       The "View Certificate ↗" button will automatically appear once a valid URL is provided.
-       ========================================================================== */
-    const certifications = [
-      {
-        title: "AWS Academy Data Engineering",
-        issuer: "Amazon Web Services",
-        year: "2026",
-        description: "Cloud-based data engineering pipelines, ETL workflows, and AWS data services.",
-        certificateUrl: "https://drive.google.com/file/d/1s86TtCOR05FhcXZk6tiy152xofYJ7iG1/view?usp=sharing"
-      },
-      {
-        title: "Computer Networks & Internet Protocol",
-        issuer: "NPTEL — IIT",
-        year: "2026",
-        description: "Network architecture, TCP/IP, routing protocols, and internet fundamentals.",
-        certificateUrl: "https://drive.google.com/file/d/1os-Vtdx4M8HrBN_7vQN6eCx_EFEjqQJ0/view?usp=sharing"
-      },
-      {
-        title: "HTML & CSS Certification",
-        issuer: "Pearson",
-        year: "2025",
-        description: "Front-end markup, responsive design patterns, and CSS architecture.",
-        certificateUrl: "https://drive.google.com/file/d/1b5WEgkBsNZToSATvshqxrpVBPe061Kr_/view?usp=sharing"
-      },
-      {
-        title: "JavaScript Certification",
-        issuer: "Pearson",
-        year: "2025",
-        description: "Core JS fundamentals, DOM manipulation, async programming, and ES6+.",
-        certificateUrl: "https://drive.google.com/file/d/1LzwVrTJT7D-6QlM-9pmXE36QYZQlVU8c/view?usp=sharing"
-      },
-      {
-        title: "Python Certification",
-        issuer: "IBM",
-        year: "July 2025",
-        description: "Python programming, data analysis, and application development with IBM.",
-        certificateUrl: "https://drive.google.com/file/d/1esGNcro7ZA8XKrJfezJESx0P1OGiaQqv/view?usp=sharing"
-      },
-      {
-        title: "Building RAG Agents with LLM",
-        issuer: "NVIDIA",
-        year: "August 2026",
-        description: "Retrieval-Augmented Generation architectures and LLM agent development.",
-        certificateUrl: "https://drive.google.com/file/d/14H2NHvBY7VAzmPmbIkb3GQnHPvEitZ-h/view?usp=sharing"
-      }
-    ];
-
-    function initCertificates() {
-      certifications.forEach(cert => {
-        const linkEl = document.querySelector(`.btn-cert-link[data-cert-title="${cert.title}"]`);
-        if (linkEl) {
-          const url = (cert.certificateUrl || '').trim();
-          if (url && url !== "PASTE_DRIVE_LINK_HERE" && (url.startsWith("http://") || url.startsWith("https://"))) {
-            linkEl.href = url;
-          } else {
-            linkEl.href = "#";
-          }
-          linkEl.style.display = "inline-flex";
-        }
-      });
-    }
-
-    document.addEventListener('click', e => {
-      const link = e.target.closest('.btn-cert-link');
-      if (link) {
-        const certTitle = link.getAttribute('data-cert-title');
-        const certObj = certifications.find(c => c.title === certTitle);
-        const url = certObj ? (certObj.certificateUrl || '').trim() : '#';
-        if (!url || url === 'PASTE_DRIVE_LINK_HERE' || url === '#' || link.getAttribute('href') === '#') {
-          e.preventDefault();
-        }
-      }
-    });
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initCertificates);
-    } else {
-      initCertificates();
-    }
-
-    /* ── Sticky Nav ── */
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 60);
-    });
-
-    /* ── Mobile Nav ── */
-    document.getElementById('navToggle').addEventListener('click', () => {
-      document.getElementById('navLinks').classList.toggle('open');
-    });
-
-    /* ── Close mobile nav on link click ── */
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('navLinks').classList.remove('open');
-      });
-    });
-
-    /* ── Active nav link on scroll ── */
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(sec => {
-        if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
-      });
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) link.classList.add('active');
-      });
-    });
-
-    /* ── Fade-up reveal ── */
-    const faders = document.querySelectorAll('.fade-up');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.1 });
-    faders.forEach(f => io.observe(f));
-
-    /* ── Animated counters ── */
-    const counters = document.querySelectorAll('.achieve-num');
-    const observerAchieve = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseInt(el.dataset.target);
-          let current = 0;
-          const step = Math.ceil(target / 60);
-          const timer = setInterval(() => {
-            current = Math.min(current + step, target);
-            el.textContent = current + '+';
-            if (current >= target) clearInterval(timer);
-          }, 20);
-          observerAchieve.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(c => observerAchieve.observe(c));
-
-    /* ── Form submit ── */
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      const note = document.getElementById('formNote');
-      note.style.display = 'block';
-      note.textContent = '✓ Thank you! I\'ll get back to you soon.';
-      e.target.reset();
-    }
-
-    /* ── Scroll hint fade ── */
-    const scrollHint = document.querySelector('.hero-scroll-hint');
-    if (scrollHint) {
-      window.addEventListener('scroll', () => {
-        scrollHint.style.opacity = window.scrollY > 80 ? '0' : '1';
-      });
-    }
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

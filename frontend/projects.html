@@ -350,16 +350,16 @@
     }
 
     /* Unique card gradients */
-    .proj-grad-1 { background: url(VV.png); background-size: contain; }
-    .proj-grad-2 { background: url(insta.png); background-size: contain; }
-    .proj-grad-3 { background: url(Creative.png); background-size: contain; }
-    .proj-grad-4 { background: url(Yucca.png); background-size: contain;}
-    .proj-grad-5 { background: url(orbitrip.png); background-size: contain; }
+    .proj-grad-1 { background: url(assets/images/VV.png); background-size: contain; }
+    .proj-grad-2 { background: url(assets/images/insta.png); background-size: contain; }
+    .proj-grad-3 { background: url(assets/images/Creative.png); background-size: contain; }
+    .proj-grad-4 { background: url(assets/images/Yucca.png); background-size: contain;}
+    .proj-grad-5 { background: url(assets/images/orbitrip.png); background-size: contain; }
     .proj-grad-6 { background: linear-gradient(135deg, #2e0a1a 0%, #6e1a3a 100%); }
-    .proj-grad-7 { background: url(Agro.png); background-size: contain; }
-    .proj-grad-8 { background: url(ss.png); background-size: contain; }
-    .proj-grad-9 { background: url(gigsure.png); background-size: contain; }
-    .proj-grad-10 { background: url(SN.png); background-size: contain; }
+    .proj-grad-7 { background: url(assets/images/Agro.png); background-size: contain; }
+    .proj-grad-8 { background: url(assets/images/ss.png); background-size: contain; }
+    .proj-grad-9 { background: url(assets/images/gigsure.png); background-size: contain; }
+    .proj-grad-10 { background: url(assets/images/SN.png); background-size: contain; }
     .proj-grad-11 { background: linear-gradient(135deg, #0a1a2e 0%, #0d3060 40%, #1a4a8a 100%); }
     .proj-grad-12 { background: linear-gradient(135deg, #0d1a0d 0%, #1a3320 40%, #0f2d1a 70%, #162d12 100%); }
 
@@ -612,7 +612,7 @@
   <!-- NAVIGATION -->
   <nav id="navbar">
     <div class="nav-logo">
-      <img src="logo.png" alt="Logo" height="60px">
+      <img src="assets/images/logo.png" alt="Logo" height="60px">
     </div>
     <div class="nav-links">
       <a href="index.html#about"      class="nav-link">About</a>
@@ -984,119 +984,6 @@
     <p>Designed &amp; built by <span class="gradient-text">Mahika Mangaonkar</span> &nbsp;•&nbsp; 2024</p>
   </footer>
 
-  <script>
-    /* ---- Sticky nav ---- */
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
-
-    /* ---- Mobile nav ---- */
-    document.getElementById('navToggle').addEventListener('click', () => {
-      document.querySelector('.nav-links').classList.toggle('open');
-    });
-
-    /* ---- Fade-up reveal ---- */
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.fade-up').forEach(f => io.observe(f));
-
-    /* ---- Filter + Search ---- */
-    const cards = Array.from(document.querySelectorAll('.project-card'));
-    const countEl = document.getElementById('countNum');
-    const noResults = document.getElementById('noResults');
-    /* initialise count to actual rendered cards */
-    countEl.textContent = cards.length;
-    let activeFilter = 'all';
-    let searchTerm = '';
-
-    function applyFilters() {
-      let visible = 0;
-      cards.forEach(card => {
-        const matchCat = activeFilter === 'all' || card.dataset.category === activeFilter;
-        const matchSearch = card.dataset.title.includes(searchTerm);
-        const show = matchCat && matchSearch;
-        card.classList.toggle('hidden', !show);
-        if (show) visible++;
-      });
-      countEl.textContent = visible;
-      noResults.style.display = visible === 0 ? 'block' : 'none';
-    }
-
-    document.querySelectorAll('.filter-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        activeFilter = tab.dataset.filter;
-        applyFilters();
-      });
-    });
-
-    document.getElementById('searchInput').addEventListener('input', e => {
-      searchTerm = e.target.value.toLowerCase().trim();
-      applyFilters();
-    });
-
-    /* ---- 3D card tilt (covers all cards including new ones) ---- */
-    document.querySelectorAll('.project-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.transform = `perspective(700px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-6px)`;
-      });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-    });
-
-    /* ---- Back to top ---- */
-    const btt = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      btt.classList.toggle('visible', window.scrollY > 400);
-    }, { passive: true });
-    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    /* ---- Cursor trail ---- */
-    const canvas = document.getElementById('cursorCanvas');
-    const ctx = canvas.getContext('2d');
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const particles = [];
-    let mx = -200, my = -200;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
-    class Particle {
-      constructor(x, y) {
-        this.x = x; this.y = y;
-        this.size = Math.random() * 4 + 1;
-        this.alpha = 0.65;
-        this.vx = (Math.random() - 0.5) * 1.5;
-        this.vy = (Math.random() - 0.5) * 1.5;
-      }
-      update() { this.x += this.vx; this.y += this.vy; this.alpha -= 0.025; this.size *= 0.96; }
-      draw() {
-        ctx.save();
-        ctx.globalAlpha = Math.max(0, this.alpha);
-        ctx.fillStyle = `rgba(139,92,246,${this.alpha})`;
-        ctx.shadowBlur = 8; ctx.shadowColor = '#8B5CF6';
-        ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
-        ctx.restore();
-      }
-    }
-
-    (function loop() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (mx > 0) particles.push(new Particle(mx, my));
-      for (let i = particles.length - 1; i >= 0; i--) {
-        particles[i].update(); particles[i].draw();
-        if (particles[i].alpha <= 0) particles.splice(i, 1);
-      }
-      requestAnimationFrame(loop);
-    })();
-  </script>
+  <script src="js/projects.js"></script>
 </body>
 </html>

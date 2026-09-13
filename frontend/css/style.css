@@ -774,8 +774,8 @@ body {
 }
 
 /* Project image backgrounds */
-.project-img1        { background: url("VV.png") center/cover no-repeat, linear-gradient(135deg,#1a0a2e,#2d1b4e); }
-.project-img3        { background: url("orbitrip.png") center/cover no-repeat, linear-gradient(135deg,#0a1a2e,#1b2d4e); }
+.project-img1        { background: url("../assets/images/VV.png") center/cover no-repeat, linear-gradient(135deg,#1a0a2e,#2d1b4e); }
+.project-img3        { background: url("../assets/images/orbitrip.png") center/cover no-repeat, linear-gradient(135deg,#0a1a2e,#1b2d4e); }
 .project-img-soulsync{
   background: linear-gradient(135deg, #1a0630 0%, #2d0d52 40%, #1a1040 100%);
   display: flex; align-items: center; justify-content: center;
@@ -786,7 +786,7 @@ body {
   filter: drop-shadow(0 0 20px rgba(139,92,246,0.8));
 }
 .project-img-agro {
-  background: url("Agro.png") center/cover no-repeat;
+  background: url("../assets/images/Agro.png") center/cover no-repeat;
   display: flex; align-items: center; justify-content: center;
 }
 .project-img-agro::after {
