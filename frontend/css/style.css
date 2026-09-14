@@ -802,21 +802,17 @@ body {
   filter: drop-shadow(0 0 20px rgba(245,158,11,0.7));
 }
 .project-img-trustgraph {
-  background: url("assets/images/Trustgraph.png") center/cover no-repeat;
+  background: url("../assets/images/Trustgraph.png") center/cover no-repeat;
   display: flex; align-items: center; justify-content: center;
 }
 .project-img-trustgraph::after {
-  content: '🛡️';
-  font-size: 52px;
   filter: drop-shadow(0 0 20px rgba(52,211,153,0.7));
 }
 .project-img-erflow {
-  background: url("assets/images/erflow.png") center/cover no-repeat;
+  background: url("../assets/images/erflow.png") center/cover no-repeat;
   display: flex; align-items: center; justify-content: center;
 }
 .project-img-erflow::after {
-  content: '🏥';
-  font-size: 52px;
   filter: drop-shadow(0 0 20px rgba(96,165,250,0.7));
 }
 
