@@ -65,8 +65,15 @@ app.use(
       if (allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
         return callback(null, true);
       }
-      // In local development, allow any localhost or 127.0.0.1 origin
-      if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+      // Allow local development and deployed frontend domains (e.g. Render, GitHub Pages, Vercel, Netlify)
+      if (
+        origin.includes('localhost') ||
+        origin.includes('127.0.0.1') ||
+        origin.includes('.onrender.com') ||
+        origin.includes('.github.io') ||
+        origin.includes('.vercel.app') ||
+        origin.includes('.netlify.app')
+      ) {
         return callback(null, true);
       }
       console.warn(`[CORS Blocked] Origin: ${origin}`);
@@ -96,9 +103,13 @@ function isValidEmail(email) {
   return emailRegex.test(email.trim());
 }
 
-// Health check endpoint
+// Health check endpoints
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', service: 'portfolio-backend' });
+});
+
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', service: 'portfolio-backend' });
+  res.status(200).json({ status: 'ok', service: 'portfolio-backend' });
 });
 
 // POST /api/contact
@@ -182,6 +193,6 @@ app.post('/api/contact', contactRateLimiter, async (req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`✅ Portfolio Backend server running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ Portfolio Backend server running on port ${PORT} (bound to 0.0.0.0)`);
 });
