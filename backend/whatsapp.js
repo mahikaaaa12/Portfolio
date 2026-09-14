@@ -1,48 +1,38 @@
 /**
- * 360dialog WhatsApp API Integration Service
+ * 360dialog WhatsApp Sandbox API Integration Service
  * 
- * Handles sending WhatsApp notifications via 360dialog HTTP API.
+ * Handles sending text notifications via 360dialog HTTP API.
  * Keeps 360dialog credentials and payload structure isolated from route handlers.
  */
 
 async function sendWhatsAppNotification({ name, email, message }) {
   const apiKey = process.env.D360_API_KEY;
-  const baseUrl = (process.env.D360_API_URL || 'https://waba-v2.360dialog.io').replace(/\/+$/, '');
-  const phoneNumber = process.env.D360_PHONE_NUMBER;
-  const templateName = process.env.D360_TEMPLATE_NAME || 'portfolio_contact_notification';
-  const templateLanguage = process.env.D360_TEMPLATE_LANGUAGE || 'en';
+  const baseUrl = (process.env.D360_API_URL || 'https://waba-sandbox.360dialog.io').replace(/\/+$/, '');
+  const rawRecipientNumber = process.env.MY_WHATSAPP_NUMBER || process.env.D360_PHONE_NUMBER;
 
   if (!apiKey || apiKey === 'your_360dialog_api_key') {
     throw new Error('D360_API_KEY is missing or unconfigured.');
   }
 
-  if (!phoneNumber || phoneNumber === 'your_whatsapp_business_number') {
-    throw new Error('D360_PHONE_NUMBER is missing or unconfigured.');
+  if (!rawRecipientNumber || rawRecipientNumber === 'your_whatsapp_number') {
+    throw new Error('MY_WHATSAPP_NUMBER is missing or unconfigured.');
   }
 
   // Format recipient phone number (strip '+' and non-digit characters)
-  const cleanToNumber = String(phoneNumber).replace(/\D/g, '');
+  const cleanToNumber = String(rawRecipientNumber).replace(/\D/g, '');
 
   const endpoint = `${baseUrl}/v1/messages`;
 
+  // Format the notification text body for WhatsApp
+  const formattedBody = `📩 NEW PORTFOLIO CONTACT\n\nName: ${String(name || '').trim()}\n\nEmail: ${String(email || '').trim()}\n\nMessage:\n${String(message || '').trim()}\n\nSource: Portfolio Website`;
+
   const payload = {
+    messaging_product: 'whatsapp',
+    recipient_type: 'individual',
     to: cleanToNumber,
-    type: 'template',
-    template: {
-      name: templateName,
-      language: {
-        code: templateLanguage
-      },
-      components: [
-        {
-          type: 'body',
-          parameters: [
-            { type: 'text', text: String(name || '').trim() },
-            { type: 'text', text: String(email || '').trim() },
-            { type: 'text', text: String(message || '').trim() }
-          ]
-        }
-      ]
+    type: 'text',
+    text: {
+      body: formattedBody
     }
   };
 
@@ -60,7 +50,7 @@ async function sendWhatsAppNotification({ name, email, message }) {
     const responseData = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      console.error('[360dialog API Error]', {
+      console.error('[360dialog API Error Response]', {
         status: response.status,
         statusText: response.statusText,
         data: responseData
@@ -70,6 +60,8 @@ async function sendWhatsAppNotification({ name, email, message }) {
         error: `360dialog API returned status ${response.status}`
       };
     }
+
+    console.log('[360dialog Sandbox Success]', responseData);
 
     return {
       success: true,

@@ -158,9 +158,23 @@ async function handleFormSubmit(e) {
   const messageVal = (document.getElementById('message')?.value || '').trim();
   const websiteVal = (document.getElementById('website')?.value || '').trim();
 
+  // Basic email validation regex
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!nameVal || !emailVal || !emailRegex.test(emailVal) || !messageVal) {
+    note.style.display = 'block';
+    note.style.color = '#ff6b6b';
+    note.textContent = "Please fill in all fields with a valid name, email, and message.";
+    return;
+  }
+
   // Configurable API URL for production / local dev
-  const apiBaseUrl = window.VITE_API_URL || window.PORTFOLIO_API_URL || (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5000' : '');
+  const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || !window.location.hostname || window.location.protocol === 'file:';
+  const apiBaseUrl = window.VITE_API_URL || window.PORTFOLIO_API_URL || (isLocalDev ? 'http://localhost:5000' : '');
   const endpoint = `${apiBaseUrl.replace(/\/+$/, '')}/api/contact`;
+
+  console.log("Contact API URL:", endpoint);
+  console.log("Submitting contact form");
 
   // Set loading state
   submitBtn.disabled = true;
@@ -185,17 +199,19 @@ async function handleFormSubmit(e) {
     const data = await response.json().catch(() => ({}));
 
     if (response.ok && data.success) {
+      console.log("Contact API succeeded:", data);
       form.reset();
       note.style.display = 'block';
       note.style.color = 'var(--purple-light)';
       note.textContent = "Message sent successfully! I'll get back to you soon.";
     } else {
+      console.error("Contact API failed:", response.status, data);
       note.style.display = 'block';
       note.style.color = '#ff6b6b';
       note.textContent = data.message || "Something went wrong. Please try again.";
     }
   } catch (err) {
-    console.error('Contact Form Submission Error:', err);
+    console.error('Contact form error:', err);
     note.style.display = 'block';
     note.style.color = '#ff6b6b';
     note.textContent = "Something went wrong. Please try again.";

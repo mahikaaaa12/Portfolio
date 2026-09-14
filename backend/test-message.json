@@ -1,0 +1,9 @@
+{
+  "messaging_product": "whatsapp",
+  "recipient_type": "individual",
+  "to": "918999205943",
+  "type": "text",
+  "text": {
+    "body": "Test message from my portfolio backend"
+  }
+}
