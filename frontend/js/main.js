@@ -168,10 +168,9 @@ async function handleFormSubmit(e) {
     return;
   }
 
-  // Configurable API URL for production / local dev
-  const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || !window.location.hostname || window.location.protocol === 'file:';
-  const apiBaseUrl = window.VITE_API_URL || window.PORTFOLIO_API_URL || (isLocalDev ? 'http://localhost:5000' : '');
-  const endpoint = `${apiBaseUrl.replace(/\/+$/, '')}/api/contact`;
+  // Backend URL loaded from js/config.js
+  const baseUrl = typeof BACKEND_URL !== 'undefined' ? BACKEND_URL : "https://portfolio-api-aquz.onrender.com";
+  const endpoint = `${baseUrl.replace(/\/+$/, '')}/api/contact`;
 
   console.log("Contact API URL:", endpoint);
   console.log("Submitting contact form");
@@ -208,7 +207,7 @@ async function handleFormSubmit(e) {
       console.error("Contact API failed:", response.status, data);
       note.style.display = 'block';
       note.style.color = '#ff6b6b';
-      note.textContent = data.message || "Something went wrong. Please try again.";
+      note.textContent = "Something went wrong. Please try again.";
     }
   } catch (err) {
     console.error('Contact form error:', err);
