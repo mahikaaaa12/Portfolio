@@ -802,7 +802,7 @@ body {
   filter: drop-shadow(0 0 20px rgba(245,158,11,0.7));
 }
 .project-img-trustgraph {
-  background: linear-gradient(135deg, #0d1a0d 0%, #1a3320 40%, #0f2d1a 70%, #162d12 100%);
+  background: url("assets/images/Trustgraph.png") center/cover no-repeat;
   display: flex; align-items: center; justify-content: center;
 }
 .project-img-trustgraph::after {
@@ -811,7 +811,7 @@ body {
   filter: drop-shadow(0 0 20px rgba(52,211,153,0.7));
 }
 .project-img-erflow {
-  background: linear-gradient(135deg, #0a1a2e 0%, #0d3060 40%, #1a4a8a 100%);
+  background: url("assets/images/erflow.png") center/cover no-repeat;
   display: flex; align-items: center; justify-content: center;
 }
 .project-img-erflow::after {

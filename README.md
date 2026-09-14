@@ -18,7 +18,7 @@ Portfolio/
 │   │   └── projects.js             # Projects page filtering, 3D tilt & cursor effects
 │   └── assets/
 │       ├── images/                 # Portfolio showcase images & icons
-│       └── documents/              # Professional documents (Resume.pdf)
+│       └── documents/              # Professional documents (Mahika_Mangaonkar_Resume.pdf)
 │
 ├── backend/
 │   ├── server.js                   # Express API server & contact route handling
